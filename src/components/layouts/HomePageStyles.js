@@ -54,6 +54,9 @@ const Header = styled.header`
     height: auto;
     width: 30px;
   }
+  img:hover{
+    cursor: pointer;
+  }
 `;
 
 const TransactionsPanel = styled.div`

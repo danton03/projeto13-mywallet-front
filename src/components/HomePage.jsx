@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import LogoutImg from "../assets/images/exit.svg";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -70,13 +71,45 @@ export default function HomePage() {
     );
   }
 
+  function handleLogout() {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    const promise = axios.post("https://projeto13-mywallet-danton.herokuapp.com/logout", {}, config);
+    promise.then((response) =>{
+      navigate("/");
+    });
+
+    toast.promise(
+      promise,
+      {
+        pending: 'Carregando...',
+        success: 'Logout realizado com sucesso!',
+        error: {
+          render({data}){
+            const code = data.response.status;
+            if(code === 401 || code === 422){
+              const message = data.response.data;
+              return message; 
+            }
+            else{
+              return "Ops, tivemos uma falha interna";
+            }
+          }
+        }
+      }
+    );
+  }
+
   return (
     <ContainerPage>
       {user.name ?
         (
           <Header>
             <p>Ola, {user.name}</p>
-            <img src={LogoutImg} alt="Ícone de Sair" />
+            <img src={LogoutImg} alt="Ícone de Sair" onClick={handleLogout} />
           </Header>
         )
         : ''}
