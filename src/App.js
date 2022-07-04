@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
+import SignInPage from "./components/SignInPage";
+import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer } from "react-toastify";
+import { useState } from "react";
+import UserContext from "./contexts/UserContext"
 
 function App() {
+  const [user, setUser] = useState({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider value={{user, setUser}}>
+        <Routes>
+          <Route path="/" element={<LoginPage/>} />
+          <Route path="/cadastro" element={<SignInPage/>} />
+          <Route path="/home" element={<SignInPage/>} />
+        </Routes>
+      </UserContext.Provider>
+      <ToastContainer />
+    </BrowserRouter>
   );
 }
 
