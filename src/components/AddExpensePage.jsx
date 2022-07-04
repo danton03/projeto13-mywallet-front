@@ -24,7 +24,7 @@ export default function AddExpensePage() {
         Authorization: `Bearer ${user.token}`
       }
     }
-    const promise = axios.post("http://localhost:5000/addExpense", formData, config);
+    const promise = axios.post("https://projeto13-mywallet-danton.herokuapp.com/addExpense", formData, config);
     promise.then((response) => {
       setIsDisabled(false);
       navigate("/home");

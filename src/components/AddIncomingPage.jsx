@@ -24,7 +24,7 @@ export default function AddIncomingPage() {
         Authorization: `Bearer ${user.token}`
       }
     }
-    const promise = axios.post("http://localhost:5000/addMoney", formData, config);
+    const promise = axios.post("https://projeto13-mywallet-danton.herokuapp.com/addMoney", formData, config);
     promise.then((response) => {
       setIsDisabled(false);
       navigate("/home");

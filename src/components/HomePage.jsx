@@ -18,7 +18,7 @@ export default function HomePage() {
       }
     }
 
-    const promise = axios.get("http://localhost:5000/wallet", config)
+    const promise = axios.get("https://projeto13-mywallet-danton.herokuapp.com/wallet", config)
 
     promise.then(response => {
       setTransactions(response.data);

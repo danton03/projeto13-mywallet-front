@@ -19,7 +19,7 @@ export default function SignInPage() {
   function handleSubmit(e) {
     e.preventDefault();
     setIsDisabled(true);
-    const promise = axios.post("http://localhost:5000/signup", formData);
+    const promise = axios.post("https://projeto13-mywallet-danton.herokuapp.com/signup", formData);
     promise.then((response) =>{
       setIsDisabled(false);
       navigate("/");
