@@ -57,8 +57,6 @@ const GlobalStyle = createGlobalStyle`
     --cor-data: #C6C6C6;
     --cor-branca: #FFFFFF; 
     --cor-preta: #000000;
-    --cor-verde: #03AC00;
-    --cor-vermelha: #C70000;
   }
   
   body{

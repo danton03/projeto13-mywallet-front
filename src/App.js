@@ -5,6 +5,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 import UserContext from "./contexts/UserContext"
+import HomePage from "./components/HomePage";
+import AddIncomingPage from "./components/AddIncomingPage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -14,7 +16,8 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage/>} />
           <Route path="/cadastro" element={<SignInPage/>} />
-          <Route path="/home" element={<SignInPage/>} />
+          <Route path="/home" element={<HomePage/>} />
+          <Route path="/entrada" element={<AddIncomingPage/>} />
         </Routes>
       </UserContext.Provider>
       <ToastContainer />
