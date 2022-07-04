@@ -62,7 +62,7 @@ export default function AddIncomingPage() {
   return (
     <ContainerPage>
       <Header>
-        <p>Nova Entrada</p>
+        <p>Nova entrada</p>
       </Header>
 
       <ContainerAuth>

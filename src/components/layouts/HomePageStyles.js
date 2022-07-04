@@ -63,7 +63,7 @@ const TransactionsPanel = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 23px 12px 10px;
+  padding: 0 12px 10px;
   background-color: var(--cor-branca);
   border-radius: 5px;
   box-sizing: border-box;

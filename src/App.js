@@ -7,6 +7,7 @@ import { useState } from "react";
 import UserContext from "./contexts/UserContext"
 import HomePage from "./components/HomePage";
 import AddIncomingPage from "./components/AddIncomingPage";
+import AddExpensePage from "./components/AddExpensePage";
 
 function App() {
   const [user, setUser] = useState({});
@@ -18,6 +19,7 @@ function App() {
           <Route path="/cadastro" element={<SignInPage/>} />
           <Route path="/home" element={<HomePage/>} />
           <Route path="/entrada" element={<AddIncomingPage/>} />
+          <Route path="/saida" element={<AddExpensePage/>} />
         </Routes>
       </UserContext.Provider>
       <ToastContainer />
