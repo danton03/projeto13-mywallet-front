@@ -57,6 +57,7 @@ export default function SignInPage() {
           <input 
             type="text" 
             placeholder="Nome (2 a 25 caracteres)"
+            value={formData.name}
             onChange={(e) => {setFormData({...formData, name: e.target.value})}}
             disabled = {isDisabled}
             required
@@ -64,6 +65,7 @@ export default function SignInPage() {
           <input 
             type="email" 
             placeholder="E-mail"
+            value={formData.email}
             onChange={(e) => {setFormData({...formData, email: e.target.value})}}
             disabled = {isDisabled}
             required
@@ -71,6 +73,7 @@ export default function SignInPage() {
           <input 
             type="password" 
             placeholder="Senha (4 a 30 caracteres)"
+            value={formData.password}
             onChange={(e) => {setFormData({...formData, password: e.target.value})}} 
             disabled = {isDisabled}
             required
@@ -78,6 +81,7 @@ export default function SignInPage() {
           <input 
             type="password" 
             placeholder="Confirme a senha"
+            value={formData.password_confirmation}
             onChange={(e) => {setFormData({...formData, password_confirmation: e.target.value})}}
             disabled = {isDisabled}
             required

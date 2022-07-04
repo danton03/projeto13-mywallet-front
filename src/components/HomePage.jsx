@@ -21,12 +21,11 @@ export default function HomePage() {
     const promise = axios.get("http://localhost:5000/wallet", config)
 
     promise.then(response => {
-      console.log(response.data);
       setTransactions(response.data);
       calculateBalance(response.data);
     })
 
-    promise.catch(err => console.log(err))
+    promise.catch(err => (err))
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,18 +40,12 @@ export default function HomePage() {
         negativeBalance -= parseFloat(transactions[i].amount);
       }
     }
-    console.log("positiveBalance");
-    console.log(positiveBalance);
-    console.log("negativeBalance");
-    console.log(negativeBalance);
     setTotal(positiveBalance + negativeBalance);
   }
 
   function renderTransactions() {
     const corVerde = "#03AC00";
     const corVermelha = "#C70000";
-    console.log("total");
-    console.log(total);
     
     return (
       <>

@@ -58,6 +58,7 @@ export default function LoginPage() {
           <input 
             type="email" 
             placeholder="E-mail"
+            value={formData.email}
             onChange={(e) => {setFormData({...formData, email: e.target.value})}}
             disabled = {isDisabled}
             required
@@ -66,6 +67,7 @@ export default function LoginPage() {
           <input 
             type="password" 
             placeholder="Senha"
+            value={formData.password}
             onChange={(e) => {setFormData({...formData, password: e.target.value})}}
             disabled = {isDisabled}
             required

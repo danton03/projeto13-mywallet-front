@@ -1,4 +1,4 @@
-import { ContainerPage, Header} from "./layouts/HomePageStyles";
+import { ContainerPage, Header } from "./layouts/HomePageStyles";
 import UserContext from "../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
@@ -19,12 +19,21 @@ export default function AddIncomingPage() {
   function handleSubmit(e) {
     e.preventDefault();
     setIsDisabled(true);
-    const promise = axios.post("http://localhost:5000/addMoney", formData);
-    promise.then((response) =>{
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    }
+    const promise = axios.post("http://localhost:5000/addMoney", formData, config);
+    promise.then((response) => {
       setIsDisabled(false);
       navigate("/home");
     });
-    promise.catch(() => {
+    promise.catch((error) => {
+      const status = error.response.status;
+      if (status === 401) {
+        navigate("/");
+      }
       setIsDisabled(false);
     })
 
@@ -32,16 +41,16 @@ export default function AddIncomingPage() {
       promise,
       {
         pending: 'Carregando...',
-        success: 'Login realizado com sucesso!',
+        success: 'Entada adicionada com sucesso!',
         error: {
-          render({data}){
+          render({ data }) {
             const code = data.response.status;
             //Verificar se esses são os códigos corretos
-            if(code === 401 || code === 422){
+            if (code === 401 || code === 422) {
               const message = data.response.data;
-              return message; 
+              return message;
             }
-            else{
+            else {
               return "Ops, tivemos uma falha interna";
             }
           }
@@ -58,27 +67,30 @@ export default function AddIncomingPage() {
 
       <ContainerAuth>
         <form onSubmit={handleSubmit}>
-          <input 
-            type="number" 
-            min={0}
+          <input
+            type="number"
             placeholder="Valor"
-            onChange={(e) => {setFormData({...formData, amount: e.target.value})}}
-            disabled = {isDisabled}
+            step="0.01"
+            min="0.01"
+            value={formData.amount}
+            onChange={(e) => { setFormData({ ...formData, amount: e.target.value }) }}
+            disabled={isDisabled}
             required
           />
 
-          <input 
+          <input
             type="text"
-            maxLength={20} 
+            maxLength={20}
             placeholder="Descrição"
-            onChange={(e) => {setFormData({...formData, description: e.target.value})}}
-            disabled = {isDisabled}
+            value={formData.description}
+            onChange={(e) => { setFormData({ ...formData, description: e.target.value }) }}
+            disabled={isDisabled}
             required
           />
 
-          <ButtonSubmit 
-            type="submit" 
-            disabled = {isDisabled}
+          <ButtonSubmit
+            type="submit"
+            disabled={isDisabled}
           >
             Salvar Entrada
           </ButtonSubmit>
